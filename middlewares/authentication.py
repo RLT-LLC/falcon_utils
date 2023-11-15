@@ -16,7 +16,6 @@ class AuthMiddleware:
         token = req.headers.get("authorization", "")
         match = re.match(pattern, token)
         if match is None:
-            raise CustomHTTPError(ExceptionCodes.ValidationError)
+            raise CustomHTTPError(ExceptionCodes.TokenNotFound)
         token = match.group("token")
         req.context.profile = await resource.mongo.get_user_by_token(token)
-        # await resource.mongo.update_online(req.context.profile['_id'])
