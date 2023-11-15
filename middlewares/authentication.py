@@ -1,6 +1,6 @@
 import re
 from falcon.asgi import Request, Response
-from utils.errors import ExceptionCodes, CustomHTTPError
+from falcon_utils.errors import ExceptionCodes, CustomHTTPError
 from ..base_resources import BaseResource
 
 pattern = r"^Token (?P<token>.*)$"
@@ -16,7 +16,7 @@ class AuthMiddleware:
         token = req.headers.get("authorization", "")
         match = re.match(pattern, token)
         if match is None:
-            raise CustomHTTPError(ExceptionCodes.NoAdminToken)
+            raise CustomHTTPError(ExceptionCodes.ValidationError)
         token = match.group("token")
         req.context.profile = await resource.mongo.get_user_by_token(token)
         # await resource.mongo.update_online(req.context.profile['_id'])

@@ -6,15 +6,22 @@ translations = {
         "ru": "Непредвиденная ошибка",
         "en": "Unexpected error"
     },
+    10: {
+        "ru": "Токен не найден",
+        "en": "Token not found"
+    },
     20: {
         "ru": "Ошибка валидации",
         "en": "Validation Error"
-    }
+    },
 }
 
 """При добавлении новой ошибки нужно добавлять код ошибки в ExceptionCodes"""
+
+
 class ExceptionCodes:
     SomeException = 1
+    TokenNotFound = 10
     ValidationError = 20
 
 
@@ -40,6 +47,6 @@ class CustomHTTPError(HTTPError):
             'status': 'ERR',
             'data': self.data,
             'code': self.code,
-            'message': self.translations[self.code].get(localization, 
+            'message': self.translations[self.code].get(localization,
                                                         self.translations[self.code].get('en')),
         }
