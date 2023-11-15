@@ -1,5 +1,6 @@
 from falcon.errors import HTTPError
 
+"""При добавлении новой ошибки нужно добавлять текст ошибки в translations"""
 translations = {
     1: {
         "ru": "Непредвиденная ошибка",
@@ -7,10 +8,11 @@ translations = {
     },
     20: {
         "ru": "Ошибка валидации",
-        "en": "Validation error"
+        "en": "Validation Error"
     }
 }
 
+"""При добавлении новой ошибки нужно добавлять код ошибки в ExceptionCodes"""
 class ExceptionCodes:
     SomeException = 1
     ValidationError = 20
