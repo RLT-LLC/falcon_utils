@@ -1,7 +1,7 @@
 from __future__ import annotations
 import typing
 
-from utils.base_models.base_model import get_representation
+from falcon_utils.base_models.base_model import get_representation
 
 if typing.TYPE_CHECKING:
     from common.mongo import MongoWorker
